@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import NavbarDesktop from '../components/NavbarDesktop';
 import NavbarMobile from '../components/NavbarMobile';
-import ContainerFixed from '../ui/layout/ContainerFixed';
+import ContainerFixed from '../ui/layouts/ContainerFixed';
 
 const Root = () => {
   // 사이트 기본 레이아웃
@@ -21,7 +21,9 @@ const Root = () => {
           <NavbarDesktop />
         </ContainerFixed>
       </Header>
-      <main className="flex-1">{Outlet}</main>
+      <main className="flex-1">
+        <Outlet />
+      </main>
       <Footer className="flex-none flex flex-col">
         <div className="bg-gray-300">upper</div>
         <div className="bg-teal-950 text-center">

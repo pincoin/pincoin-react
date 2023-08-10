@@ -1,0 +1,6 @@
+/* 구글 웹폰트 한양고딕 */
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap');
+
+html, body {
+    font-family: 'Gothic A1', sans-serif;
+}
