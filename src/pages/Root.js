@@ -2,9 +2,6 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import NavbarDesktop from '../components/NavbarDesktop';
-import NavbarMobile from '../components/NavbarMobile';
-import ContainerFixed from '../ui/layouts/ContainerFixed';
 
 const Root = () => {
   // 사이트 기본 레이아웃
@@ -15,26 +12,11 @@ const Root = () => {
 
   return (
     <div className="flex flex-col h-screen">
-      <Header className="flex-none">
-        <ContainerFixed className="px-2">
-          <NavbarMobile />
-          <NavbarDesktop />
-        </ContainerFixed>
-      </Header>
+      <Header className="flex-none" />
       <main className="flex-1">
         <Outlet />
       </main>
-      <Footer className="flex-none flex flex-col">
-        <div className="bg-gray-300">upper</div>
-        <div className="bg-teal-950 text-center">
-          <div className="flex flex-col md:flex-row gap-x-4 py-4 text-white text-center">
-            <div className="flex-1 md:text-right">
-              Copyright &copy; 2012-2023 {window.location.hostname}
-            </div>
-            <div className="flex-1 md:text-left">All Rights Reserved.</div>
-          </div>
-        </div>
-      </Footer>
+      <Footer className="flex-none" />
     </div>
   );
 };
