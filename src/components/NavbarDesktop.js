@@ -59,7 +59,7 @@ const NavbarDesktop = () => {
                     return (
                       <Menu.Item key={child.id}>
                         <Link
-                          to={`/categories/${child.slug}`}
+                          to={`/products/${child.slug}`}
                           className="block px-4 py-2"
                         >
                           {child.title}

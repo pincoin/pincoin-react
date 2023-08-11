@@ -1,7 +1,10 @@
 import React from 'react';
+import {useParams} from 'react-router-dom';
 
 const ProductDetail = () => {
-  return <div>제품 상세</div>;
+  const {product, slug} = useParams();
+
+  return <div>{product}, {slug} 상세</div>;
 };
 
 export default ProductDetail;
