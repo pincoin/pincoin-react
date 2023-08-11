@@ -1,6 +1,14 @@
 import { Dialog, Transition } from '@headlessui/react';
 import React, { Fragment } from 'react';
-import { MdClose, MdOutlineMenu } from 'react-icons/md';
+import {
+  MdInfoOutline,
+  MdLogin,
+  MdOutlineMenu,
+  MdPerson,
+  MdSendToMobile,
+  MdShoppingBag,
+} from 'react-icons/md';
+
 import IconButton from '../ui/buttons/IconButton';
 
 const Drawer = (props) => {
@@ -40,27 +48,53 @@ const Drawer = (props) => {
                 <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pr-32">
                   {/* 우측 여백으로 크기 조정 */}
                   <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                    <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
-                      <div className="px-4 sm:px-6">
-                        <div className="flex items-start justify-between">
-                          <Dialog.Title className="text-base font-semibold leading-6 text-gray-900">
-                            서랍 메뉴 제목
-                          </Dialog.Title>
-                          <div className="ml-3 flex h-7 items-center">
-                            <button
-                              type="button"
-                              className="relative rounded-md bg-white text-green-950 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-green-950 focus:ring-offset-2"
-                              onClick={props.onClose}
-                            >
-                              <span className="absolute -inset-2.5" />
-                              <span className="sr-only">서랍 닫기</span>
-                              <MdClose className="h-6 w-6" aria-hidden="true" />
-                            </button>
-                          </div>
-                        </div>
+                    <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+                      <div>
+                        <h1 className="font-bold border-l-4 border-b border-green-600 bg-green-50 text-green-800 px-2 py-1">
+                          핀코인
+                        </h1>
                       </div>
-                      <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                        {/* Your content */}
+                      <div className="border-b px-3 py-1 flex space-x-2 items-center">
+                        <MdPerson />
+                        <span>마이페이지</span>
+                      </div>
+                      <div className="border-b px-3 py-1 flex space-x-2 items-center">
+                        <MdLogin />
+                        <span>로그인</span>
+                      </div>
+                      <div className="border-b px-3 py-1 flex space-x-2 items-center">
+                        <MdSendToMobile />
+                        <span>주문/발송</span>
+                      </div>
+                      <div className="border-b px-3 py-1 flex space-x-2 items-center">
+                        <MdShoppingBag />
+                        <span>장바구니</span>
+                      </div>
+                      <div className="border-b px-3 py-1 flex space-x-2 items-center">
+                        <MdInfoOutline />
+                        <span>고객센터</span>
+                      </div>
+                      <div>
+                        <h1 className="font-bold border-l-4 border-b border-green-600 bg-green-50 text-green-800 px-2 py-1">
+                          상품권
+                        </h1>
+                      </div>
+                      <div className="overflow-y-auto h-[calc(100vh_-_264px)]">
+                        {props.menu.map((menuItem) => {
+                          return (
+                            <div
+                              className="border-b px-3 py-1 flex space-x-2 items-center"
+                              key={menuItem.id}
+                            >
+                              <span>{menuItem.title}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <div>
+                        <h1 className="font-bold border-l-4 border-t border-green-600 bg-green-50 text-green-800 px-2 py-1">
+                          {window.location.hostname}
+                        </h1>
                       </div>
                     </div>
                   </Dialog.Panel>

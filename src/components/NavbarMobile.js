@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import menu from '../json/mobile-menu.json';
 import Drawer from './Drawer';
 
 const NavbarMobile = () => {
@@ -21,7 +22,12 @@ const NavbarMobile = () => {
         </Link>
       </div>
       <div>
-        <Drawer isOpen={isOpen} onOpen={openDrawerHandler} onClose={closeDrawerHandler} />
+        <Drawer
+          menu={menu}
+          isOpen={isOpen}
+          onOpen={openDrawerHandler}
+          onClose={closeDrawerHandler}
+        />
       </div>
     </div>
   );
