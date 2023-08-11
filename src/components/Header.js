@@ -6,10 +6,10 @@ import NavbarMobile from './NavbarMobile';
 const Header = (props) => {
   return (
     <header className={`${props.className ? props.className : ''}`}>
-      <ContainerFixed className="px-2">
+      <ContainerFixed className="shadow px-2">
         <NavbarMobile />
-        <NavbarDesktop />
       </ContainerFixed>
+      <NavbarDesktop />
     </header>
   );
 };

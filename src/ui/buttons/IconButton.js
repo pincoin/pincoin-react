@@ -5,7 +5,7 @@ const IconButton = (props) => {
     <button
       className={`${
         props.className ? props.className : ''
-      } inline-flex items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2`}
+      } inline-flex items-center align-middle focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2`}
       type={props.type}
       onClick={props.onClick}
     >

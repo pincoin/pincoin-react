@@ -71,7 +71,7 @@ const Footer = (props) => {
             <div>
               <IconTextButton>
                 <MdEmail />
-                <span>jonghwa@pincoin.co.kr</span>
+                <span>help@pincoin.co.kr</span>
               </IconTextButton>
             </div>
           </div>
