@@ -8,6 +8,7 @@ import {
   MdSendToMobile,
   MdShoppingBag,
 } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 import IconButton from '../ui/buttons/IconButton';
 
@@ -82,12 +83,14 @@ const Drawer = (props) => {
                       <div className="overflow-y-auto h-[calc(100vh_-_264px)]">
                         {props.menu.map((menuItem) => {
                           return (
-                            <div
+                            <Link
+                              to={`/products/${menuItem.slug}`}
                               className="border-b px-3 py-1 flex space-x-2 items-center"
                               key={menuItem.id}
+                              onClick={props.onClose}
                             >
-                              <span>{menuItem.title}</span>
-                            </div>
+                              {menuItem.title}
+                            </Link>
                           );
                         })}
                       </div>
