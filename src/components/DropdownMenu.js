@@ -1,14 +1,14 @@
 import { Menu, Transition } from '@headlessui/react';
 import React, { Fragment } from 'react';
-import { MdArrowDropDown } from 'react-icons/md';
+import { MdExpandMore } from 'react-icons/md';
 
 const DropdownMenu = (props) => {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex w-full justify-center text-green-950">
+        <Menu.Button className="inline-flex w-full items-center gap-x-1 text-green-950">
           {props.title}
-          <MdArrowDropDown className="text-green-800" />
+          <MdExpandMore className="text-green-800" />
         </Menu.Button>
       </div>
       <Transition
