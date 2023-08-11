@@ -2,7 +2,6 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import ContainerFixed from '../ui/layouts/ContainerFixed';
 
 const RootLayout = () => {
   // 사이트 기본 레이아웃
@@ -12,12 +11,10 @@ const RootLayout = () => {
   // - 푸터: 자신의 크기만큼 - flex: 0 0 auto;
 
   return (
-    <div className="flex flex-col h-screen gap-y-4">
+    <div className="flex flex-col h-screen">
       <Header className="flex-none" />
       <main className="flex-1">
-        <ContainerFixed className="px-2">
-          <Outlet />
-        </ContainerFixed>
+        <Outlet />
       </main>
       <Footer className="flex-none" />
     </div>

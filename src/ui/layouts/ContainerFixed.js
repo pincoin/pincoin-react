@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ContainerFluid = (props) => {
+const ContainerFixed = (props) => {
   return (
     <div
       className={`${props.className ? props.className : ''} mx-auto max-w-7xl`}
@@ -10,4 +10,4 @@ const ContainerFluid = (props) => {
   );
 };
 
-export default ContainerFluid;
+export default ContainerFixed;
