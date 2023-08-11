@@ -184,11 +184,10 @@ const NavbarDesktop = () => {
                 <DropdownMenu title={menuItem.title} key={menuItem.id}>
                   {menuItem.children.map((child) => {
                     return (
-                      <Menu.Item>
+                      <Menu.Item key={child.id}>
                         <Link
                           to={`/categories/${child.slug}`}
                           className="block px-4 py-2"
-                          key={child.id}
                         >
                           {child.title}
                         </Link>
