@@ -17,10 +17,10 @@ const Drawer = (props) => {
         <Dialog as="div" className="relative z-10" onClose={props.onClose}>
           <Transition.Child
             as={Fragment}
-            enter="ease-in-out duration-100"
+            enter="ease-in-out duration-50"
             enterFrom="opacity-0"
             enterTo="opacity-100"
-            leave="ease-in-out duration-100"
+            leave="ease-in-out duration-50"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
@@ -28,16 +28,17 @@ const Drawer = (props) => {
           </Transition.Child>
           <Transition.Child
             as={Fragment}
-            enter="transform transition ease-in-out duration-500 sm:duration-700"
+            enter="transform transition ease-in-out duration-100"
             enterFrom="translate-x-full"
             enterTo="translate-x-0"
-            leave="transform transition ease-in-out duration-500 sm:duration-700"
+            leave="transform transition ease-in-out duration-100"
             leaveFrom="translate-x-0"
             leaveTo="translate-x-full"
           >
             <div className="fixed inset-0 overflow-hidden">
               <div className="absolute inset-0 overflow-hidden">
-                <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+                <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-40">
+                  {/* 좌측 여백으로 크기 조정 */}
                   <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                     <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
                       <div className="px-4 sm:px-6">
@@ -48,7 +49,7 @@ const Drawer = (props) => {
                           <div className="ml-3 flex h-7 items-center">
                             <button
                               type="button"
-                              className="relative rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                              className="relative rounded-md bg-white text-green-950 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-green-950 focus:ring-offset-2"
                               onClick={props.onClose}
                             >
                               <span className="absolute -inset-2.5" />
