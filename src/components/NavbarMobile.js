@@ -1,9 +1,18 @@
-import React from 'react';
-import { MdOutlineMenu } from 'react-icons/md';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import IconButton from '../ui/buttons/IconButton';
+import Drawer from './Drawer';
 
 const NavbarMobile = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openDrawerHandler = () => {
+    setIsOpen(true);
+  };
+
+  const closeDrawerHandler = () => {
+    setIsOpen(false);
+  };
+
   return (
     <div className="flex justify-between py-3 md:hidden">
       <div>
@@ -12,12 +21,7 @@ const NavbarMobile = () => {
         </Link>
       </div>
       <div>
-        <IconButton
-          onClick={() => {}}
-          className="text-2xl border border-green-950 p-1 rounded-sm"
-        >
-          <MdOutlineMenu />
-        </IconButton>
+        <Drawer isOpen={isOpen} onOpen={openDrawerHandler} onClose={closeDrawerHandler} />
       </div>
     </div>
   );
