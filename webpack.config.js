@@ -15,6 +15,8 @@ module.exports = {
     output: {
         path: __dirname + "/dist/",
         publicPath: "/", // react-router-dom 설정 필수
+        filename: '[name].js?id=[chunkhash]', // 배포 시 캐시 상관 없이 빠른 반영
+        clean: true,
     },
     module: {
         rules: [
