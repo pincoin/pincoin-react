@@ -42,6 +42,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: "public/index.html",
             title: process.env.SITE_TITLE,
+            favicon: "src/assets/favicon.png",
         }),
         new MiniCssExtractPlugin(),
         new webpack.DefinePlugin({ // dotenv 플러그인 정의

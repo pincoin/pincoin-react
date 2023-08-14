@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaCcPaypal, FaFacebookSquare, FaTwitterSquare } from 'react-icons/fa';
-import { MdEmail } from 'react-icons/md';
+import {MdEmail, MdPhone} from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import IconButton from '../ui/buttons/IconButton';
 import IconTextButton from '../ui/buttons/IconTextButton';
@@ -68,6 +68,12 @@ const Footer = (props) => {
             <div>주소: 서울 서초구 방배로 32길 8, 203호</div>
             <div>사업자등록번호: 163-81-01158</div>
             <div>통신판매업신고: 2019-서울서초-0835</div>
+            <div>
+              <IconTextButton>
+                <MdPhone />
+                <span>070-4517-1801</span>
+              </IconTextButton>
+            </div>
             <div>
               <IconTextButton>
                 <MdEmail />

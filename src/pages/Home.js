@@ -276,35 +276,32 @@ const Home = () => {
             <div className="grid grid-cols-2 md:grid-cols-6 gap-x-2 md:gap-x-4 gap-y-2 md:gap-y-4">
               {products.slice(0, 6).map((product) => {
                 return (
-                    <div className="flex flex-col gap-y-1" key={product.id}>
-                      <Link to={`/products/${product.slug}`}>
-                        <img
-                            src="https://via.placeholder.com/640x480"
-                            className="h-auto max-w-full rounded border border-green-950"
-                            alt={product.title}
-                        />
-                      </Link>
-                      <div className="text-center">{product.title}</div>
-                      <div className="text-center">
-                        최대
-                        <span className="inline-flex items-center text-red-600">
+                  <div className="flex flex-col gap-y-1" key={product.id}>
+                    <Link to={`/products/${product.slug}`}>
+                      <img
+                        src="https://via.placeholder.com/640x480"
+                        className="h-auto max-w-full rounded border border-green-950"
+                        alt={product.title}
+                      />
+                    </Link>
+                    <div className="text-center">{product.title}</div>
+                    <div className="text-center">
+                      최대
+                      <span className="inline-flex items-center text-red-600">
                         {product.discount.toFixed(2)}% <MdArrowDownward />
                       </span>
-                      </div>
                     </div>
+                  </div>
                 );
               })}
             </div>
           </Card>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-4 bg-neutral-100 rounded p-4">
-            <div className="text-center">
-              <p className="mb-2">고객센터: 매일 오전10시~밤11시</p>
-              <p className="font-bold">070-4517-1801</p>
-            </div>
             <div className="text-center font-bold">
               365일/24시간 실시간 발송
             </div>
-            <div className="text-center">매월1일 새벽2시 연장근무</div>
+            <div className="text-center">고객센터: 매일 오전 10시 ~ 밤 11시</div>
+            <div className="text-center">매월 1일 새벽 2시까지 연장근무</div>
             <div className="text-sm text-gray-700 md:col-span-3 text-center">
               고객센터 메뉴에서 문의를 남겨주시면 바로 답변 또는
               전화연락드립니다.
