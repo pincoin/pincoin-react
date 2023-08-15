@@ -128,7 +128,7 @@ const Home = () => {
 
       <ContainerFixed className="px-2 py-4">
         <div className="flex flex-col gap-y-4">
-          <Card className="p-1">
+          <Card className="">
             <h1 className="text-orange-500 font-semibold border-l-4 border-orange-600 pl-2 mb-2">
               오늘의 상품권
             </h1>
@@ -146,7 +146,7 @@ const Home = () => {
                     <div className="text-center">{product.title}</div>
                     <div className="text-center">
                       최대
-                      <span className="inline-flex items-center text-red-600">
+                      <span className="ml-1 inline-flex items-center text-red-600">
                         {product.discount.toFixed(2)}% <MdArrowDownward />
                       </span>
                     </div>
@@ -157,7 +157,7 @@ const Home = () => {
           </Card>
           <div className="flex flex-col md:flex-row gap-x-4 gap-y-4">
             <div className="basis-2/3">
-              <Card className="p-1">
+              <Card className="">
                 <h1 className="text-orange-500 font-semibold border-l-4 border-orange-600 pl-2 mb-2">
                   상품권 금융사기 예방 수칙
                 </h1>
@@ -186,7 +186,7 @@ const Home = () => {
               </Card>
             </div>
             <div className="basis-1/3">
-              <Card className="p-1">
+              <Card className="">
                 <h1 className="text-orange-500 font-semibold border-l-4 border-orange-600 pl-2 mb-2">
                   핀코인 대표몰 / 핀코인 카드몰
                 </h1>
@@ -210,7 +210,7 @@ const Home = () => {
           </div>
           <div className="flex flex-col md:flex-row gap-x-4 gap-y-4">
             <div className="flex-1">
-              <Card className="p-1">
+              <Card className="">
                 <h1 className="text-orange-500 font-semibold border-l-4 border-orange-600 pl-2 mb-2">
                   공지사항
                 </h1>
@@ -239,7 +239,7 @@ const Home = () => {
               </Card>
             </div>
             <div className="flex-1">
-              <Card className="p-1">
+              <Card className="">
                 <h1 className="text-orange-500 font-semibold border-l-4 border-orange-600 pl-2 mb-2">
                   핀코인 이용후기
                 </h1>
@@ -269,7 +269,7 @@ const Home = () => {
             </div>
           </div>
           <div className="bg-gray-300">광고배너</div>
-          <Card className="p-1">
+          <Card className="">
             <h1 className="text-orange-500 font-semibold border-l-4 border-orange-600 pl-2 mb-2">
               베스트셀러
             </h1>
@@ -287,7 +287,7 @@ const Home = () => {
                     <div className="text-center">{product.title}</div>
                     <div className="text-center">
                       최대
-                      <span className="inline-flex items-center text-red-600">
+                      <span className="ml-1 inline-flex items-center text-red-600">
                         {product.discount.toFixed(2)}% <MdArrowDownward />
                       </span>
                     </div>
