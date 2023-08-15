@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaCcPaypal, FaFacebookSquare, FaTwitterSquare } from 'react-icons/fa';
-import {MdEmail, MdPhone} from 'react-icons/md';
+import { MdEmail, MdPhone } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import IconButton from '../ui/buttons/IconButton';
 import IconTextButton from '../ui/buttons/IconTextButton';
@@ -8,7 +8,9 @@ import ContainerFixed from '../ui/layouts/ContainerFixed';
 
 const Footer = (props) => {
   return (
-    <footer className={`${props.className ? props.className : ''} flex flex-col`}>
+    <footer
+      className={`${props.className ? props.className : ''} flex flex-col`}
+    >
       <div className="bg-green-50 text-green-950">
         <ContainerFixed className="flex flex-col p-2 gap-y-2">
           <div className="flex-1 flex flex-col md:flex-row justify-between gap-y-2">
@@ -50,15 +52,14 @@ const Footer = (props) => {
                   <option value="USD">USD</option>
                 </select>
               </div>
-
               <IconButton>
-                <FaFacebookSquare className="text-2xl text-[#4267B2]"  />
+                <FaFacebookSquare className="text-2xl text-[#4267B2]" />
               </IconButton>
               <IconButton>
-                <FaTwitterSquare className="text-2xl text-[#1DA1F2]"  />
+                <FaTwitterSquare className="text-2xl text-[#1DA1F2]" />
               </IconButton>
               <IconButton>
-                <FaCcPaypal className="text-2xl text-[#012169]"/>
+                <FaCcPaypal className="text-2xl text-[#012169]" />
               </IconButton>
             </div>
           </div>
@@ -66,7 +67,15 @@ const Footer = (props) => {
           <div className="flex flex-col md:flex-row gap-y-2 gap-x-4">
             <div>대표: 서종화</div>
             <div>주소: 서울 서초구 방배로 32길 8, 203호</div>
-            <div>사업자등록번호: 163-81-01158</div>
+            <div>
+              사업자등록번호:
+              <a
+                href="https://www.ftc.go.kr/bizCommPop.do?wrkr_no=1638101158"
+                target="_blank"
+              >
+                163-81-01158
+              </a>
+            </div>
             <div>통신판매업신고: 2019-서울서초-0835</div>
             <div>
               <IconTextButton>
@@ -77,7 +86,7 @@ const Footer = (props) => {
             <div>
               <IconTextButton>
                 <MdEmail />
-                <span>help@pincoin.co.kr</span>
+                <a href="mailto:help@pincoin.co.kr">help@pincoin.co.kr</a>
               </IconTextButton>
             </div>
           </div>
