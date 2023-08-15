@@ -18,7 +18,7 @@ const NavbarMobile = () => {
     <div className="flex justify-between py-3 md:hidden">
       <div>
         <Link to="/" className="font-bold text-lg">
-          {process.env.SITE_TITLE}
+          <img src={process.env.LOGO_MOBILE} alt={process.env.SITE_TITLE} />
         </Link>
       </div>
       <div>

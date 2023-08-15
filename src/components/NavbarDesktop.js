@@ -20,7 +20,12 @@ const NavbarDesktop = () => {
         <ContainerFixed className="px-2 py-2">
           <div className="flex justify-between">
             <div className="font-bold">
-              <Link to="/">{process.env.SITE_TITLE}</Link>
+              <Link to="/">
+                <img
+                  src={process.env.LOGO_DESKTOP}
+                  alt={process.env.SITE_TITLE}
+                />
+              </Link>
             </div>
             <div className="flex-none flex gap-x-4">
               <Link to="/" className="inline-flex items-center gap-x-1">
