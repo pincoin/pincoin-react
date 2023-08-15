@@ -71,7 +71,7 @@ const ProductList = () => {
             {messages.map((message, idx) => {
               return (
                 <li key={idx} className="py-1 list-disc list-inside">
-                  {message}
+                  <span className="-mx-2.5">{message}</span>
                 </li>
               );
             })}
@@ -89,19 +89,19 @@ const ProductList = () => {
                       />
                     </Link>
                     <div className="border-x border-b border-x-green-150 border-b-green-150 gap-y-2 py-2">
-                      <div className="text-center">{product.title}</div>
-                      <div className="text-center">{product.subtitle}</div>
-                      <div className="text-center">
+                      <p className="text-center">{product.title}</p>
+                      <p className="text-center">{product.subtitle}</p>
+                      <p className="text-center font-bold">
                         {new Intl.NumberFormat('ko-KR', {
                           style: 'currency',
                           currency: 'KRW',
                         }).format(product.price)}
-                      </div>
-                      <div className="text-center">
+                      </p>
+                      <p className="text-center">
                         <span className="inline-flex items-center text-red-600">
-                          {product.discount.toFixed(2)}% <MdArrowDownward />
+                          {product.discount.toFixed(2)}% <MdArrowDownward className="ml-1" />
                         </span>
-                      </div>
+                      </p>
                     </div>
                     <div className="border-x border-b border-x-green-150 border-b-green-150 rounded-b bg-gray-50 text-center py-2">
                       <IconTextButton className="border border-gray-900 px-2 py-1 rounded bg-gray-200">
