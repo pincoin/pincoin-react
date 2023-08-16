@@ -1,6 +1,6 @@
 import React from 'react';
 import { MdArrowDownward, MdShoppingBag } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import IconTextButton from '../../ui/buttons/IconTextButton';
 import Card from '../../ui/layouts/Card';
 import ContainerFixed from '../../ui/layouts/ContainerFixed';
@@ -63,6 +63,8 @@ const products = [
 ];
 
 const ProductList = () => {
+  const params = useParams();
+
   return (
     <>
       <ContainerFixed className="px-2 py-4">
@@ -71,7 +73,9 @@ const ProductList = () => {
             {messages.map((message, idx) => {
               return (
                 <li key={idx} className="py-1 list-disc list-inside">
-                  <span className="-mx-2.5">{message}</span>
+                  <span className="-mx-2.5">
+                    {message}
+                  </span>
                 </li>
               );
             })}
@@ -81,7 +85,7 @@ const ProductList = () => {
               {products.slice(0, 6).map((product) => {
                 return (
                   <div className="flex flex-col" key={product.id}>
-                    <Link to={`/products/${product.slug}`}>
+                    <Link to={`/products/${params.product}/${product.slug}`}>
                       <img
                         src="https://via.placeholder.com/640x480"
                         className="h-auto max-w-full rounded-t border border-green-950"
@@ -99,7 +103,8 @@ const ProductList = () => {
                       </p>
                       <p className="text-center">
                         <span className="inline-flex items-center text-red-600">
-                          {product.discount.toFixed(2)}% <MdArrowDownward className="ml-1" />
+                          {product.discount.toFixed(2)}%{' '}
+                          <MdArrowDownward className="ml-1" />
                         </span>
                       </p>
                     </div>
