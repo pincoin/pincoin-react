@@ -58,14 +58,13 @@ const ProductDetail = () => {
           <h2 className="text-amber-500 font-semibold border-l-4 border-amber-600 pl-2">
             상품권 발송 안내
           </h2>
-          <ul className="list-disc list-inside flex flex-col gap-y-2 leading-relaxed">
+          <ul className="list-disc list-inside flex flex-col gap-y-2 leading-relaxed px-2 md:px-4 py-1">
             <li>
               <span className="-mx-2.5">
                 상품권 확인은 사이트 [주문내역] 에서 확인합니다.
               </span>
             </li>
             <li>
-              {' '}
               <span className="-mx-2.5">
                 메뉴의 [마이페이지]에서 모든 본인인증 절차를 완료하신 경우 최대
                 10분 이내로 상품권을 확인할 수 있습니다.
@@ -88,7 +87,7 @@ const ProductDetail = () => {
           <h2 className="text-amber-500 font-semibold border-l-4 border-amber-600 pl-2">
             교환 및 환불 안내
           </h2>
-          <ul className="list-disc list-inside flex flex-col gap-y-2 leading-relaxed">
+          <ul className="list-disc list-inside flex flex-col gap-y-2 leading-relaxed px-2 md:px-4 py-1">
             <li>
               <span className="-mx-2.5">
                 상품권을 받기 전에 고객님의 교환 또는 환불 요청은 요청일로부터
@@ -112,7 +111,7 @@ const ProductDetail = () => {
           <h2 className="text-amber-500 font-semibold border-l-4 border-amber-600 pl-2">
             상품권 구매 한도 안내
           </h2>
-          <ul className="list-disc list-inside flex flex-col gap-y-2 leading-relaxed">
+          <ul className="list-disc list-inside flex flex-col gap-y-2 leading-relaxed px-2 md:px-4 py-1">
             <li>
               <span className="-mx-2.5">
                 컬쳐랜드상품권, 해피머니, 도서문화상품권, 구글기프트카드를

@@ -103,7 +103,7 @@ const ProductList = () => {
                       </p>
                       <p className="text-center">
                         <span className="inline-flex items-center text-red-600">
-                          {product.discount.toFixed(2)}%{' '}
+                          {product.discount.toFixed(2)}%
                           <MdArrowDownward className="ml-1" />
                         </span>
                       </p>
