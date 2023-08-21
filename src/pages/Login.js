@@ -39,7 +39,7 @@ const Login = () => {
               <input
                 type="text"
                 name="username"
-                className="block w-full border-0 py-2 text-gray-900 placeholder:text-gray-400"
+                className="block w-full border-0 p-2 text-gray-900 placeholder:text-gray-400"
                 placeholder="username@example.com"
               />
             </div>
@@ -53,7 +53,7 @@ const Login = () => {
               <input
                 type="password"
                 name="password"
-                className="block w-full border-0 py-2 text-gray-900 placeholder:text-gray-400"
+                className="block w-full border-0 p-2 text-gray-900 placeholder:text-gray-400"
                 placeholder="****"
               />
             </div>
@@ -114,10 +114,10 @@ const Login = () => {
           </div>
         </div>
         <div className="flex-1 flex flex-col md:flex-row gap-x-4 gap-y-4">
-          <Link to="" className="flex-1 text-center bg-green-50 rounded py-2">
+          <Link to="" className="flex-1 text-center bg-pink-100 rounded py-2">
             비밀번호찾기
           </Link>
-          <Link to="" className="flex-1 text-center bg-green-50 rounded py-2">
+          <Link to="" className="flex-1 text-center bg-orange-200 rounded py-2">
             회원가입
           </Link>
         </div>

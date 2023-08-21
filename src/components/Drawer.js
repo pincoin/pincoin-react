@@ -59,10 +59,14 @@ const Drawer = (props) => {
                         <MdPerson />
                         <span>마이페이지</span>
                       </div>
-                      <div className="border-b px-3 py-1 flex space-x-2 items-center">
+                      <Link
+                        to="/sign-in"
+                        className="border-b px-3 py-1 flex space-x-2 items-center"
+                        onClick={props.onClose}
+                      >
                         <MdLogin />
                         <span>로그인</span>
-                      </div>
+                      </Link>
                       <div className="border-b px-3 py-1 flex space-x-2 items-center">
                         <MdSendToMobile />
                         <span>주문/발송</span>
