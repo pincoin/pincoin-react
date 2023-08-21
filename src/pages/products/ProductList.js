@@ -69,18 +69,16 @@ const ProductList = () => {
     <>
       <ContainerFixed className="px-2 py-4">
         <div className="flex flex-col gap-y-4">
-          <ul className="bg-sky-50 px-2 md:px-4 py-1 rounded">
+          <ul className="list-disc list-inside space-y-2 bg-sky-50 px-2 md:px-4 py-4 rounded">
             {messages.map((message, idx) => {
               return (
-                <li key={idx} className="py-1 list-disc list-inside">
-                  <span className="-mx-2.5">
-                    {message}
-                  </span>
+                <li key={idx}>
+                  <span className="-mx-2">{message}</span>
                 </li>
               );
             })}
           </ul>
-          <Card className="">
+          <Card>
             <div className="grid grid-cols-2 md:grid-cols-6 gap-x-2 md:gap-x-4 gap-y-2 md:gap-y-4">
               {products.slice(0, 6).map((product) => {
                 return (
