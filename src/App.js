@@ -6,8 +6,9 @@ import Logout from './pages/Logout';
 import ProductDetail from './pages/products/ProductDetail';
 import ProductList from './pages/products/ProductList';
 import RootLayout from './pages/RootLayout';
+import TestSubmit from './pages/TestSubmit';
 
-const router = createBrowserRouter([
+const routes = [
   {
     path: '/',
     element: <RootLayout />,
@@ -50,7 +51,19 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+];
+
+const router = createBrowserRouter(
+  process.env.NODE_ENV === 'development'
+    ? [
+        ...routes,
+        {
+          path: 'test',
+          element: <TestSubmit />,
+        },
+      ]
+    : routes
+);
 
 const App = () => {
   return <RouterProvider router={router} />;
