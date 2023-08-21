@@ -13,14 +13,13 @@ const Login = () => {
               <MdWarning className="text-yellow-800 text-xl" />
             </div>
             <div className="ml-3">
-              <h3 className="font-medium text-yellow-800">개인정보보호 안내</h3>
+              <h3 className="font-medium text-yellow-800">
+                정보통신망법에 따른 개인정보보호 안내
+              </h3>
               <div className="mt-2 text-sm text-yellow-700">
                 <ul className="list-disc -ml-3 space-y-2">
-                  <li>1년 이상 미접속 고객님은 다시 회원가입해주세요.</li>
-                  <li>
-                    [정보통신망법]에 따라 1년 이상 미접속 계정 정보는 모두
-                    파기합니다.
-                  </li>
+                  <li>1년 이상 미접속 계정 정보는 법령에 따라 모두 파기합니다.</li>
+                  <li>1년 이상 미접속 고객님은 다시 [회원가입]해주세요.</li>
                 </ul>
               </div>
             </div>
