@@ -6,7 +6,7 @@ import ContainerFixed from '../ui/layouts/ContainerFixed';
 const Login = () => {
   return (
     <ContainerFixed className="px-2 py-4">
-      <div className="flex flex-col mx-auto md:w-1/2 gap-y-4 md:shadow-md md:p-4">
+      <div className="flex flex-col mx-auto md:w-1/2 gap-y-4 md:shadow md:shadow-gray-500 rounded md:p-4">
         <div className="border-l-4 border-yellow-400 rounded-md bg-yellow-50 px-2 py-4">
           <div className="flex">
             <div className="flex-shrink-0">
