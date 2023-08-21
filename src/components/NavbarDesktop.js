@@ -44,11 +44,11 @@ const NavbarDesktop = () => {
                 <MdPersonPin />
                 <span>마이페이지</span>
               </Link>
-              <Link to="/" className="inline-flex items-center gap-x-1">
+              <Link to="/sign-in" className="inline-flex items-center gap-x-1">
                 <MdLogin />
                 <span>로그인</span>
               </Link>
-              <Link to="/" className="inline-flex items-center gap-x-1">
+              <Link to="/sign-out" className="inline-flex items-center gap-x-1">
                 <MdLogout />
                 <span>로그아웃</span>
               </Link>
