@@ -18,7 +18,9 @@ const Login = () => {
               </h3>
               <div className="mt-2 text-sm text-yellow-700">
                 <ul className="list-disc -ml-3 space-y-2">
-                  <li>1년 이상 미접속 계정 정보는 법령에 따라 모두 파기합니다.</li>
+                  <li>
+                    1년 이상 미접속 계정 정보는 법령에 따라 모두 파기합니다.
+                  </li>
                   <li>1년 이상 미접속 고객님은 다시 [회원가입]해주세요.</li>
                 </ul>
               </div>
@@ -123,6 +125,11 @@ const Login = () => {
       </div>
     </ContainerFixed>
   );
+};
+
+export const action = async () => {
+  console.log('로그인 처리');
+  return null;
 };
 
 export default Login;
