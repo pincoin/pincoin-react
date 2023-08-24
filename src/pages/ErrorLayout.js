@@ -26,15 +26,13 @@ const ErrorLayout = () => {
       <main className="flex-1">
         <ContainerFixed className="px-2 py-4">
           <div className="flex flex-col gap-y-4 rounded-md bg-red-50 p-4">
-            <h1 className="inline-flex items-center gap-x-2 text-red-800">
+            <h1 className="inline-flex items-center gap-x-2 text-red-800 font-bold">
               <MdError className="text-red-400" />
               <span>{title}</span>
             </h1>
-            <div className="text-red-700">
-              <ul className="list-disc gap-y-1 pl-5">
-                <li>{message}</li>
-              </ul>
-            </div>
+            <ul className="list-disc gap-y-1 pl-12 text-red-700">
+              <li>{message}</li>
+            </ul>
           </div>
         </ContainerFixed>
       </main>
