@@ -1,4 +1,5 @@
 import React from 'react';
+import ErrorLayout from '../pages/ErrorLayout';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Logout from '../pages/Logout';
@@ -10,6 +11,7 @@ const routes = [
   {
     path: '/',
     element: <RootLayout />,
+    errorElement: <ErrorLayout />,
     children: [
       {
         index: true,

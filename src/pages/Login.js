@@ -17,7 +17,7 @@ const Login = () => {
                 정보통신망법에 따른 개인정보보호 안내
               </h3>
               <div className="mt-2 text-sm text-yellow-700">
-                <ul className="list-disc -ml-3 space-y-2">
+                <ul className="list-disc -ml-3 gap-y-2">
                   <li>
                     1년 이상 미접속 계정 정보는 법령에 따라 모두 파기합니다.
                   </li>

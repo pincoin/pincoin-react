@@ -161,7 +161,7 @@ const Home = () => {
                 <h1 className="text-red-600 font-semibold border-l-4 border-orange-600 pl-2 mb-2">
                   상품권 금융사기 예방 수칙
                 </h1>
-                <ul className="list-disc list-inside space-y-2">
+                <ul className="list-disc list-inside gap-y-2">
                   <li>
                     <span className="-mx-2">
                       다른 사람으로부터 상품권 구매로 일부 또는 전체 금액을 입금
@@ -200,7 +200,7 @@ const Home = () => {
                 <h1 className="text-orange-500 font-semibold border-l-4 border-orange-600 pl-2 mb-2">
                   핀코인 대표몰 / 핀코인 카드몰
                 </h1>
-                <ul className="space-y-2">
+                <ul className="gap-y-2">
                   <li>
                     <button className="bg-sky-400 w-full p-1 rounded text-white">
                       카드몰에서 상품권 구입하기
@@ -209,7 +209,7 @@ const Home = () => {
                   <li>대표몰: 계좌이체, 에스크로, 페이팔 결제</li>
                   <li>
                     카드몰: 신용카드, 휴대폰 결제
-                    <ul className="mt-2 space-y-2 pl-2 list-disc list-inside">
+                    <ul className="mt-2 gap-y-2 pl-2 list-disc list-inside">
                       <li>
                         <span className="-mx-2">
                           카드사별 월간 한도 100만원

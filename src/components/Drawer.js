@@ -55,27 +55,27 @@ const Drawer = (props) => {
                           핀코인
                         </h1>
                       </div>
-                      <div className="border-b px-3 py-1 flex space-x-2 items-center">
+                      <div className="border-b px-3 py-1 flex gap-x-2 items-center">
                         <MdPerson />
                         <span>마이페이지</span>
                       </div>
                       <Link
                         to="/sign-in"
-                        className="border-b px-3 py-1 flex space-x-2 items-center"
+                        className="border-b px-3 py-1 flex gap-x-2 items-center"
                         onClick={props.onClose}
                       >
                         <MdLogin />
                         <span>로그인</span>
                       </Link>
-                      <div className="border-b px-3 py-1 flex space-x-2 items-center">
+                      <div className="border-b px-3 py-1 flex gap-x-2 items-center">
                         <MdSendToMobile />
                         <span>주문/발송</span>
                       </div>
-                      <div className="border-b px-3 py-1 flex space-x-2 items-center">
+                      <div className="border-b px-3 py-1 flex gap-x-2 items-center">
                         <MdShoppingBag />
                         <span>장바구니</span>
                       </div>
-                      <div className="border-b px-3 py-1 flex space-x-2 items-center">
+                      <div className="border-b px-3 py-1 flex gap-x-2 items-center">
                         <MdInfoOutline />
                         <span>고객센터</span>
                       </div>
@@ -89,7 +89,7 @@ const Drawer = (props) => {
                           return (
                             <Link
                               to={`/products/${menuItem.slug}`}
-                              className="border-b px-3 py-1 flex space-x-2 items-center"
+                              className="border-b px-3 py-1 flex gap-x-2 items-center"
                               key={menuItem.id}
                               onClick={props.onClose}
                             >
