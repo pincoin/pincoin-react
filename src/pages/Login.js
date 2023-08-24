@@ -29,41 +29,28 @@ const Login = () => {
         </div>
 
         <form className="flex-1 flex flex-col gap-y-4">
-          <div className=" -space-y-px rounded-md shadow-sm">
-            <div className=" rounded-md rounded-b-none px-3 pb-1.5 pt-2.5 ring-1 ring-inset ring-gray-300">
-              <label
-                htmlFor="username"
-                className="block text-xs font-medium text-gray-900 mb-1"
-              >
-                이메일
-              </label>
+          <div className="sm:grid sm:grid-cols-6 gap-x-4 items-center">
+            <label className="ml-auto text-sm">이메일</label>
+            <div className="sm:col-span-4 flex mt-2 sm:mt-0 rounded shadow ring-1 ring-inset ring-gray-400 focus-within:ring-1 focus-within:ring-inset focus-within:ring-teal-600">
               <input
-                type="text"
-                name="username"
-                className="block w-full border-0 p-2 text-gray-900 placeholder:text-gray-400"
+                type="email"
                 placeholder="username@example.com"
-              />
-            </div>
-            <div className=" rounded-md rounded-t-none px-3 pb-1.5 pt-2.5 ring-1 ring-inset ring-gray-300">
-              <label
-                htmlFor="password"
-                className="block text-xs font-medium text-gray-900 mb-1"
-              >
-                비밀번호
-              </label>
-              <input
-                type="password"
-                name="password"
-                className="block w-full border-0 p-2 text-gray-900 placeholder:text-gray-400"
-                placeholder="****"
+                className="flex-1 border-0 bg-transparent text-sm focus:ring-0"
               />
             </div>
           </div>
-          <div className="flex-1">
-            <button
-              type="submit"
-              className="w-full p-2 bg-green-950 text-white rounded"
-            >
+          <div className="sm:grid sm:grid-cols-6 gap-x-4 items-center">
+            <label className="ml-auto text-sm">비밀번호</label>
+            <div className="sm:col-span-4 flex mt-2 sm:mt-0 rounded shadow ring-1 ring-inset ring-gray-400 focus-within:ring-1 focus-within:ring-inset focus-within:ring-teal-600">
+              <input
+                type="password"
+                placeholder="****"
+                className="flex-1 border-0 bg-transparent text-sm focus:ring-0"
+              />
+            </div>
+          </div>
+          <div className="sm:grid sm:grid-cols-6 gap-x-4 items-center">
+            <button className="sm:col-start-2 sm:col-span-4 w-full py-2 bg-green-950 text-white rounded">
               로그인
             </button>
           </div>
