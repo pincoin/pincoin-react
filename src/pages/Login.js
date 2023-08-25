@@ -1,10 +1,24 @@
 import axios from 'axios';
-import React from 'react';
+import React, {useEffect} from 'react';
 import { MdWarning } from 'react-icons/md';
-import { Form, json, Link, redirect } from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import {Form, json, Link, useActionData, useNavigate} from 'react-router-dom';
+import {authActions} from '../store/auth';
 import ContainerFixed from '../ui/layouts/ContainerFixed';
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const actionData = useActionData();
+
+  useEffect(() => {
+    if (actionData && actionData.accessToken) {
+      dispatch(authActions.login());
+      navigate('/');
+    }
+
+  }, [actionData]);
+
   return (
     <ContainerFixed className="px-2 py-4">
       <div className="flex flex-col mx-auto md:w-1/2 gap-y-4 md:shadow md:shadow-gray-500 rounded md:p-4">
@@ -153,7 +167,11 @@ export const action = async ({ request }) => {
   localStorage.setItem('refreshToken', response.data.refreshToken);
   localStorage.setItem('expiration', expiration.toISOString());
 
-  return redirect('/');
+  return {
+    accessToken: response.data.accessToken,
+    refreshToken: response.data.refreshToken,
+    expiration: expiration.toISOString(),
+  };
 };
 
 export default Login;

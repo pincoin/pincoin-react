@@ -55,7 +55,9 @@ const Drawer = (props) => {
                     <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
                       <div>
                         <h1 className="font-bold border-l-4 border-b border-green-600 bg-green-50 text-green-800 px-2 py-1">
-                          핀코인
+                          <Link to="/" onClick={props.onClose}>
+                            핀코인
+                          </Link>
                         </h1>
                       </div>
                       {isAuthenticated && (
@@ -63,6 +65,7 @@ const Drawer = (props) => {
                           <Link
                             to="/settings"
                             className="border-b px-3 py-1 flex gap-x-2 items-center"
+                            onClick={props.onClose}
                           >
                             <MdPerson />
                             <span>마이페이지</span>
@@ -90,6 +93,7 @@ const Drawer = (props) => {
                           <Link
                             to="/sign-up"
                             className="border-b px-3 py-1 flex gap-x-2 items-center"
+                            onClick={props.onClose}
                           >
                             <MdPerson />
                             <span>회원가입</span>

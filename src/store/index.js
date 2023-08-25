@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './auth';
 import cartReducer from './cart';
 
+// 새로고침해도 로그인 상태 유지를 위해서 JWT 액세스 토큰은 로컬 스토리지에서 가져온다.
 const accessToken = localStorage.getItem('accessToken');
 
 const preloadedState = {
