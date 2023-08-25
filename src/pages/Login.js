@@ -1,6 +1,7 @@
+import axios from 'axios';
 import React from 'react';
 import { MdWarning } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { Form, json, Link, redirect } from 'react-router-dom';
 import ContainerFixed from '../ui/layouts/ContainerFixed';
 
 const Login = () => {
@@ -28,12 +29,13 @@ const Login = () => {
           </div>
         </div>
 
-        <form className="flex-1 flex flex-col gap-y-4">
+        <Form method="post" className="flex-1 flex flex-col gap-y-4">
           <div className="sm:grid sm:grid-cols-6 gap-x-4 items-center">
             <label className="ml-auto text-sm">이메일</label>
             <div className="sm:col-span-4 flex mt-2 sm:mt-0 rounded shadow ring-1 ring-inset ring-gray-400 focus-within:ring-1 focus-within:ring-inset focus-within:ring-teal-600">
               <input
                 type="email"
+                name="email"
                 placeholder="username@example.com"
                 className="flex-1 border-0 bg-transparent text-sm focus:ring-0"
               />
@@ -44,6 +46,7 @@ const Login = () => {
             <div className="sm:col-span-4 flex mt-2 sm:mt-0 rounded shadow ring-1 ring-inset ring-gray-400 focus-within:ring-1 focus-within:ring-inset focus-within:ring-teal-600">
               <input
                 type="password"
+                name="password"
                 placeholder="****"
                 className="flex-1 border-0 bg-transparent text-sm focus:ring-0"
               />
@@ -54,7 +57,7 @@ const Login = () => {
               로그인
             </button>
           </div>
-        </form>
+        </Form>
 
         <div className="relative w-10/12 md:w-1/2 mx-auto">
           <div className="absolute inset-0 flex items-center">
@@ -114,9 +117,43 @@ const Login = () => {
   );
 };
 
-export const action = async () => {
-  console.log('로그인 처리');
-  return null;
+export const action = async ({ request }) => {
+  const formData = await request.formData();
+
+  const response = await axios.post(
+    `${process.env.API_URL}/auth/authenticate`,
+    {
+      email: formData.get('email'),
+      password: formData.get('password'),
+      grantType: 'password',
+    },
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  );
+
+  if (
+    response.status === 500 ||
+    response.status === 401 ||
+    response.status === 403
+  ) {
+    return response;
+  }
+
+  if (response.status !== 200 && response.statusText === 'OK') {
+    throw json({ message: 'Could not authenticate user.' }, { status: 401 });
+  }
+
+  const expiration = new Date();
+  expiration.setSeconds(expiration.getSeconds() + response.data.expiresIn);
+
+  localStorage.setItem('accessToken', response.data.accessToken);
+  localStorage.setItem('refreshToken', response.data.refreshToken);
+  localStorage.setItem('expiration', expiration.toISOString());
+
+  return redirect('/');
 };
 
 export default Login;

@@ -1,7 +1,7 @@
 import React from 'react';
 import ErrorLayout from '../pages/ErrorLayout';
 import Home from '../pages/Home';
-import Login from '../pages/Login';
+import Login, { action as loginAction } from '../pages/Login';
 import Logout from '../pages/Logout';
 import ProductDetail from '../pages/products/ProductDetail';
 import ProductList from '../pages/products/ProductList';
@@ -20,6 +20,7 @@ const routes = [
       {
         path: 'sign-in',
         element: <Login />,
+        action: loginAction,
       },
       {
         path: 'sign-out',
