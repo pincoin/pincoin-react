@@ -3,17 +3,20 @@ import React from 'react';
 import {
   MdInfoOutline,
   MdLogin,
-  MdLogout,
+  MdLogout, MdPersonAdd,
   MdPersonPin,
   MdSendToMobile,
   MdShoppingBag,
 } from 'react-icons/md';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import menu from '../json/desktop-menu.json';
 import ContainerFixed from '../ui/layouts/ContainerFixed';
 import DropdownMenu from './DropdownMenu';
 
 const NavbarDesktop = () => {
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
   return (
     <div className="hidden md:flex md:flex-col">
       <div className="bg-white">
@@ -40,18 +43,39 @@ const NavbarDesktop = () => {
                 <MdInfoOutline />
                 <span>고객센터</span>
               </Link>
-              <Link to="/" className="inline-flex items-center gap-x-1">
-                <MdPersonPin />
-                <span>마이페이지</span>
-              </Link>
-              <Link to="/sign-in" className="inline-flex items-center gap-x-1">
-                <MdLogin />
-                <span>로그인</span>
-              </Link>
-              <Link to="/sign-out" className="inline-flex items-center gap-x-1">
-                <MdLogout />
-                <span>로그아웃</span>
-              </Link>
+              {isAuthenticated && (
+                <>
+                  <Link to="/" className="inline-flex items-center gap-x-1">
+                    <MdPersonPin />
+                    <span>마이페이지</span>
+                  </Link>
+                  <Link
+                    to="/sign-out"
+                    className="inline-flex items-center gap-x-1"
+                  >
+                    <MdLogout />
+                    <span>로그아웃</span>
+                  </Link>
+                </>
+              )}
+              {!isAuthenticated && (
+                <>
+                  <Link
+                    to="/sign-in"
+                    className="inline-flex items-center gap-x-1"
+                  >
+                    <MdLogin />
+                    <span>로그인</span>
+                  </Link>
+                  <Link
+                    to="/sign-up"
+                    className="inline-flex items-center gap-x-1"
+                  >
+                    <MdPersonAdd />
+                    <span>회원가입</span>
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </ContainerFixed>

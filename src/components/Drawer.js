@@ -8,11 +8,14 @@ import {
   MdSendToMobile,
   MdShoppingBag,
 } from 'react-icons/md';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import IconButton from '../ui/buttons/IconButton';
 
 const Drawer = (props) => {
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
   return (
     <>
       <IconButton
@@ -55,18 +58,44 @@ const Drawer = (props) => {
                           핀코인
                         </h1>
                       </div>
-                      <div className="border-b px-3 py-1 flex gap-x-2 items-center">
-                        <MdPerson />
-                        <span>마이페이지</span>
-                      </div>
-                      <Link
-                        to="/sign-in"
-                        className="border-b px-3 py-1 flex gap-x-2 items-center"
-                        onClick={props.onClose}
-                      >
-                        <MdLogin />
-                        <span>로그인</span>
-                      </Link>
+                      {isAuthenticated && (
+                        <>
+                          <Link
+                            to="/settings"
+                            className="border-b px-3 py-1 flex gap-x-2 items-center"
+                          >
+                            <MdPerson />
+                            <span>마이페이지</span>
+                          </Link>
+                          <Link
+                            to="/sign-out"
+                            className="border-b px-3 py-1 flex gap-x-2 items-center"
+                            onClick={props.onClose}
+                          >
+                            <MdLogin />
+                            <span>로그아웃</span>
+                          </Link>
+                        </>
+                      )}
+                      {!isAuthenticated && (
+                        <>
+                          <Link
+                            to="/sign-in"
+                            className="border-b px-3 py-1 flex gap-x-2 items-center"
+                            onClick={props.onClose}
+                          >
+                            <MdLogin />
+                            <span>로그인</span>
+                          </Link>
+                          <Link
+                            to="/sign-up"
+                            className="border-b px-3 py-1 flex gap-x-2 items-center"
+                          >
+                            <MdPerson />
+                            <span>회원가입</span>
+                          </Link>
+                        </>
+                      )}
                       <div className="border-b px-3 py-1 flex gap-x-2 items-center">
                         <MdSendToMobile />
                         <span>주문/발송</span>
