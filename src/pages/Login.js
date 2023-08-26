@@ -1,9 +1,9 @@
 import axios from 'axios';
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { MdWarning } from 'react-icons/md';
-import {useDispatch} from 'react-redux';
-import {Form, json, Link, useActionData, useNavigate} from 'react-router-dom';
-import {authActions} from '../store/auth';
+import { useDispatch } from 'react-redux';
+import { Form, Link, useActionData, useNavigate } from 'react-router-dom';
+import { authActions } from '../store/auth';
 import ContainerFixed from '../ui/layouts/ContainerFixed';
 
 const Login = () => {
@@ -16,7 +16,6 @@ const Login = () => {
       dispatch(authActions.login());
       navigate('/');
     }
-
   }, [actionData]);
 
   return (
@@ -134,44 +133,43 @@ const Login = () => {
 export const action = async ({ request }) => {
   const formData = await request.formData();
 
-  const response = await axios.post(
-    `${process.env.API_URL}/auth/authenticate`,
-    {
-      email: formData.get('email'),
-      password: formData.get('password'),
-      grantType: 'password',
-    },
-    {
-      headers: {
-        'Content-Type': 'application/json',
+  let response;
+
+  try {
+    response = await axios.post(
+      `${process.env.API_URL}/auth/authenticate`,
+      {
+        email: formData.get('email'),
+        password: formData.get('password'),
+        grantType: 'password',
       },
-    }
-  );
-
-  if (
-    response.status === 500 ||
-    response.status === 401 ||
-    response.status === 403
-  ) {
-    return response;
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+  } catch (error) {
+    console.log(error);
+    return error;
   }
 
-  if (response.status !== 200 && response.statusText === 'OK') {
-    throw json({ message: 'Could not authenticate user.' }, { status: 401 });
+  if (response.status === 200 && response.statusText === 'OK') {
+    const expiration = new Date();
+    expiration.setSeconds(expiration.getSeconds() + response.data.expiresIn);
+
+    localStorage.setItem('accessToken', response.data.accessToken);
+    localStorage.setItem('refreshToken', response.data.refreshToken);
+    localStorage.setItem('expiration', expiration.toISOString());
+
+    return {
+      accessToken: response.data.accessToken,
+      refreshToken: response.data.refreshToken,
+      expiration: expiration.toISOString(),
+    };
   }
 
-  const expiration = new Date();
-  expiration.setSeconds(expiration.getSeconds() + response.data.expiresIn);
-
-  localStorage.setItem('accessToken', response.data.accessToken);
-  localStorage.setItem('refreshToken', response.data.refreshToken);
-  localStorage.setItem('expiration', expiration.toISOString());
-
-  return {
-    accessToken: response.data.accessToken,
-    refreshToken: response.data.refreshToken,
-    expiration: expiration.toISOString(),
-  };
+  return null;
 };
 
 export default Login;

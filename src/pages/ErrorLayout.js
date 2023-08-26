@@ -8,16 +8,19 @@ import ContainerFixed from '../ui/layouts/ContainerFixed';
 const ErrorLayout = () => {
   const error = useRouteError();
 
-  let title = 'An error occurred!';
-  let message = 'Something went wrong!';
-
-  if (error.status === 500) {
-    message = error.data.message;
-  }
+  let title = '알 수 없는 오류';
+  let messages = ['관리자에게 문의하세요.'];
 
   if (error.status === 404) {
     title = '페이지 없음';
-    message = '페이지 경로를 확인해주세요.';
+    messages = ['페이지 경로를 확인해주세요.'];
+  }
+
+  if (error.response) {
+    title = error.response.data.message;
+    messages = error.response.data.errors;
+    console.log(error.response.data.status);
+    console.log(error.response.data.timestamp);
   }
 
   return (
@@ -31,7 +34,7 @@ const ErrorLayout = () => {
               <span>{title}</span>
             </h1>
             <ul className="list-disc gap-y-1 pl-12 text-red-700">
-              <li>{message}</li>
+              {messages.map((message, idx) => <li key={idx}>{message}</li>)}
             </ul>
           </div>
         </ContainerFixed>
