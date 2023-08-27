@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import { MdWarning } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { Form, Link, useActionData, useNavigate } from 'react-router-dom';
@@ -10,6 +11,18 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const actionData = useActionData();
+
+  const {
+    register,
+    // 성능 이슈 문제로 formState 반드시 destructuring
+    formState: { errors, isSubmitSuccessful, isValid, isDirty },
+    handleSubmit,
+    setError,
+    reset,
+    clearErrors,
+  } = useForm({
+    mode: 'onBlur',
+  });
 
   useEffect(() => {
     if (actionData && actionData.accessToken) {
@@ -48,22 +61,47 @@ const Login = () => {
             <div className="sm:col-span-4 flex mt-2 sm:mt-0 rounded shadow ring-1 ring-inset ring-gray-400 focus-within:ring-1 focus-within:ring-inset focus-within:ring-teal-600">
               <input
                 type="email"
-                name="email"
                 placeholder="username@example.com"
+                {...register('email', {
+                  required: '이메일을 올바르게 입력해주세요.',
+                  pattern: {
+                    value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                    message: '이메일을 올바르게 입력해주세요.',
+                  },
+                })}
+                onChange={() => {
+                  if (errors.email) {
+                    clearErrors('email');
+                  }
+                }}
                 className="flex-1 border-0 bg-transparent text-sm focus:ring-0"
               />
             </div>
+            {errors?.email?.message && <p>{errors.email.message}</p>}
           </div>
           <div className="sm:grid sm:grid-cols-6 gap-x-4 items-center">
             <label className="ml-auto text-sm">비밀번호</label>
             <div className="sm:col-span-4 flex mt-2 sm:mt-0 rounded shadow ring-1 ring-inset ring-gray-400 focus-within:ring-1 focus-within:ring-inset focus-within:ring-teal-600">
               <input
                 type="password"
-                name="password"
                 placeholder="****"
+                {...register('password', {
+                  required: '비밀번호를 입력해주세요.',
+                  minLength: {
+                    value: 4,
+                    message:
+                      '비밀번호는 4글자 이상이어야 합니다.',
+                  },
+                })}
+                onChange={() => {
+                  if (errors.password) {
+                    clearErrors('password');
+                  }
+                }}
                 className="flex-1 border-0 bg-transparent text-sm focus:ring-0"
               />
             </div>
+            {errors?.password?.message && <p>{errors.password.message}</p>}
           </div>
           <div className="sm:grid sm:grid-cols-6 gap-x-4 items-center">
             <button className="sm:col-start-2 sm:col-span-4 w-full py-2 bg-green-950 text-white rounded">
