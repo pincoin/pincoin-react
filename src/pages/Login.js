@@ -92,21 +92,19 @@ const Login = () => {
                   },
                 })}
                 onChange={() => {
-                  if (errors.email) {
+                  if (errors?.email) {
                     clearErrors('email');
                   }
                 }}
                 className="flex-1 border-0 bg-transparent text-sm focus:ring-0"
               />
             </div>
-          </div>
-          {errors?.email?.message && (
-              <div className="sm:grid sm:grid-cols-6 gap-x-4">
-                <div className="sm:col-start-2 sm:col-span-4 -mt-3 text-red-500 text-sm">
-                  {errors.email.message}
-                </div>
+            {errors?.email?.message && (
+              <div className="sm:col-start-2 sm:col-span-4 mt-1.5 text-red-500 text-sm">
+                {errors.email.message}
               </div>
-          )}
+            )}
+          </div>
           <div className="sm:grid sm:grid-cols-6 gap-x-4 items-center">
             <label className="ml-auto text-sm">비밀번호</label>
             <div className="sm:col-span-4 flex mt-2 sm:mt-0 rounded shadow ring-1 ring-inset ring-gray-400 focus-within:ring-1 focus-within:ring-inset focus-within:ring-teal-600">
@@ -121,21 +119,19 @@ const Login = () => {
                   },
                 })}
                 onChange={() => {
-                  if (errors.password) {
+                  if (errors?.password) {
                     clearErrors('password');
                   }
                 }}
                 className="flex-1 border-0 bg-transparent text-sm focus:ring-0"
               />
             </div>
-          </div>
-          {errors?.password?.message && (
-            <div className="sm:grid sm:grid-cols-6 gap-x-4">
-              <div className="sm:col-start-2 sm:col-span-4 -mt-3 text-red-500 text-sm">
+            {errors?.password?.message && (
+              <div className="sm:col-start-2 sm:col-span-4 mt-1.5 text-red-500 text-sm">
                 {errors.password.message}
               </div>
-            </div>
-          )}
+            )}
+          </div>
           <div className="sm:grid sm:grid-cols-6 gap-x-4 items-center">
             <button
               type="submit"
