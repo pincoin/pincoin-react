@@ -154,7 +154,7 @@ export const action = async ({ request }) => {
     return error;
   }
 
-  if (response.status === 200 && response.statusText === 'OK') {
+  if (response.status === 200) {
     const expiration = new Date();
     expiration.setSeconds(expiration.getSeconds() + response.data.expiresIn);
 
