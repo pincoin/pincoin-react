@@ -3,26 +3,35 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { MdWarning } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
-import { Form, Link, useActionData, useNavigate } from 'react-router-dom';
+import {
+  Form,
+  Link,
+  useActionData,
+  useNavigate,
+  useNavigation,
+  useSubmit,
+} from 'react-router-dom';
 import { authActions } from '../store/auth';
 import ContainerFixed from '../ui/layouts/ContainerFixed';
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
   const navigate = useNavigate();
   const actionData = useActionData();
+  const submit = useSubmit();
 
   const {
     register,
     // 성능 이슈 문제로 formState 반드시 destructuring
-    formState: { errors, isSubmitSuccessful, isValid, isDirty },
-    handleSubmit,
-    setError,
-    reset,
+    formState: { errors, isValid },
     clearErrors,
   } = useForm({
     mode: 'onBlur',
   });
+
+  // 폼 전송 중 처리 시  react-hook-form formState.isSubmitting 사용하면 충돌
+  const isSubmitting = navigation.state === 'submitting';
 
   useEffect(() => {
     if (actionData && actionData.accessToken) {
@@ -30,6 +39,15 @@ const Login = () => {
       navigate('/');
     }
   }, [actionData]);
+
+  const formSubmitHandler = async (event) => {
+    // react-router-dom 폼과 react-hook-form 폼 호환성 문제로 handleSubmit 사용 안 함
+    event.preventDefault();
+
+    if (isValid) {
+      submit(event.currentTarget);
+    }
+  };
 
   return (
     <ContainerFixed className="px-2 py-4">
@@ -55,7 +73,11 @@ const Login = () => {
           </div>
         </div>
 
-        <Form method="post" className="flex-1 flex flex-col gap-y-4">
+        <Form
+          method="post"
+          onSubmit={formSubmitHandler}
+          className="flex-1 flex flex-col gap-y-4"
+        >
           <div className="sm:grid sm:grid-cols-6 gap-x-4 items-center">
             <label className="ml-auto text-sm">이메일</label>
             <div className="sm:col-span-4 flex mt-2 sm:mt-0 rounded shadow ring-1 ring-inset ring-gray-400 focus-within:ring-1 focus-within:ring-inset focus-within:ring-teal-600">
@@ -89,8 +111,7 @@ const Login = () => {
                   required: '비밀번호를 입력해주세요.',
                   minLength: {
                     value: 4,
-                    message:
-                      '비밀번호는 4글자 이상이어야 합니다.',
+                    message: '비밀번호는 4글자 이상이어야 합니다.',
                   },
                 })}
                 onChange={() => {
@@ -104,8 +125,12 @@ const Login = () => {
             {errors?.password?.message && <p>{errors.password.message}</p>}
           </div>
           <div className="sm:grid sm:grid-cols-6 gap-x-4 items-center">
-            <button className="sm:col-start-2 sm:col-span-4 w-full py-2 bg-green-950 text-white rounded">
-              로그인
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="sm:col-start-2 sm:col-span-4 w-full py-2 bg-green-950 text-white rounded"
+            >
+              {isSubmitting ? '로그인하는 중' : '로그인'}
             </button>
           </div>
         </Form>
