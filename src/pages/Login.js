@@ -23,6 +23,7 @@ const Login = () => {
 
   const {
     register,
+    trigger,
     // 성능 이슈 문제로 formState 반드시 destructuring
     formState: { errors, isValid },
     clearErrors,
@@ -47,6 +48,9 @@ const Login = () => {
     if (isValid) {
       submit(event.currentTarget);
     }
+
+    // 모든 입력 필드 검증 실시 -> 오류 메시지 출력
+    await trigger();
   };
 
   return (
