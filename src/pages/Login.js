@@ -45,12 +45,11 @@ const Login = () => {
     // react-router-dom 폼과 react-hook-form 폼 호환성 문제로 handleSubmit 사용 안 함
     event.preventDefault();
 
-    if (isValid) {
-      submit(event.currentTarget);
+    if (!isValid) {
+      await trigger(); // 폼 입력이 유효하지 않으면 오류 메시지 출력
     }
 
-    // 모든 입력 필드 검증 실시 -> 오류 메시지 출력
-    await trigger();
+    submit(event.currentTarget); // react-router-dom action 함수로 폼 전송 요청
   };
 
   return (
