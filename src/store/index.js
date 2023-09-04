@@ -1,4 +1,6 @@
-import { configureStore } from '@reduxjs/toolkit';
+import {configureStore} from '@reduxjs/toolkit';
+import {setupListeners} from '@reduxjs/toolkit/query';
+import {usersApi} from './apis/usersApi';
 import authReducer from './auth';
 import cartReducer from './cart';
 
@@ -15,9 +17,18 @@ const preloadedState = {
 };
 
 const store = configureStore({
-  reducer: { auth: authReducer, cart: cartReducer },
+  reducer: {
+    auth: authReducer,
+    cart: cartReducer,
+    [usersApi.reducerPath]: usersApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) => {
+    return getDefaultMiddleware().concat(usersApi.middleware);
+  },
   preloadedState,
 });
+
+setupListeners(store.dispatch);
 
 export default store;
 

@@ -1,11 +1,11 @@
 import React from 'react';
 
-const ContainerFixed = (props) => {
+const ContainerFixed = ({children, ...rest}) => {
   return (
     <div
-      className={`${props.className ? props.className : ''} mx-auto max-w-7xl`}
+      className={`${rest.className ? rest.className : ''} mx-auto max-w-7xl`}
     >
-      {props.children}
+      {children}
     </div>
   );
 };

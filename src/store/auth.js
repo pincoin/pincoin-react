@@ -8,8 +8,9 @@ const initialAuthState = {
 const authSlice = createSlice({
   name: 'authentication',
   initialState: initialAuthState,
-  reducers: {
+  reducers: { // 메소드 이름이 dispatch() 할 때 액션 이름 역할
     login(state) {
+      // immer 패키지로 불변성을 확보
       state.isAuthenticated = true;
     },
     logout(state) {

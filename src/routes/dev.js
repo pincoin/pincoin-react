@@ -2,6 +2,7 @@ import React from 'react';
 import FormHookValidation from '../pages/dev/FormHookValidation';
 import Forms from '../pages/dev/Forms';
 import FormValidation from '../pages/dev/FormValidation';
+import LoaderAction, {loader, action} from '../pages/dev/LoaderAction';
 import TestSubmit from '../pages/dev/TestSubmit';
 
 const routes = [
@@ -23,6 +24,12 @@ const routes = [
       {
         path: 'forms',
         element: <Forms />,
+      },
+      {
+        path: 'loader-action',
+        element: <LoaderAction />,
+        loader: loader,
+        action: action,
       },
     ],
   },

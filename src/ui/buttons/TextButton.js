@@ -1,15 +1,14 @@
 import React from 'react';
 
-const TextButton = (props) => {
+const TextButton = ({ children, ...rest }) => {
   return (
     <button
       className={`${
-        props.className ? props.className : ''
+        rest.className ? rest.className : ''
       } rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2`}
-      type={props.type}
-      onClick={props.onClick}
+      {...rest}
     >
-      {props.children}
+      {children}
     </button>
   );
 };

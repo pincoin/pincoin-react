@@ -1,13 +1,12 @@
 import React from 'react';
 
-const IconTextButton = (props) => {
+const IconTextButton = ({ children, ...rest }) => {
   return (
     <button
-      className={`${props.className ? props.className : ''} inline-flex items-center gap-x-1`}
-      type={props.type}
-      onClick={props.onClick}
+      className={`${rest.className ? rest.className : ''} inline-flex items-center gap-x-1`}
+      {...rest}
     >
-      {props.children}
+      {children}
     </button>
   );
 };
