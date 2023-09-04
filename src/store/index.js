@@ -1,20 +1,8 @@
-import {configureStore} from '@reduxjs/toolkit';
-import {setupListeners} from '@reduxjs/toolkit/query';
-import {usersApi} from './apis/usersApi';
-import authReducer from './auth';
-import cartReducer from './cart';
-
-// 새로고침해도 로그인 상태 유지를 위해서 JWT 액세스 토큰은 로컬 스토리지에서 가져온다.
-const accessToken = localStorage.getItem('accessToken');
-
-const preloadedState = {
-  auth: {
-    isAuthenticated: accessToken != null,
-  },
-  cart: {
-    total: 0,
-  },
-};
+import { configureStore } from '@reduxjs/toolkit';
+import { setupListeners } from '@reduxjs/toolkit/query';
+import { usersApi } from './apis/usersApi';
+import authReducer from './slices/authSlice';
+import cartReducer from './slices/cartSlice';
 
 const store = configureStore({
   reducer: {
@@ -25,7 +13,6 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware().concat(usersApi.middleware);
   },
-  preloadedState,
 });
 
 setupListeners(store.dispatch);
@@ -60,4 +47,4 @@ export default store;
 // 액션과 리듀서 로직을 덩어리로 만든 파일
 // 루트 리덕스 상태를 여러 상태로 쪼개기 때문에 슬라이스로 명칭
 
-// disaptch, selector
+// dispatch, selector

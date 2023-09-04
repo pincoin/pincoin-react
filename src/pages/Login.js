@@ -11,7 +11,7 @@ import {
   useNavigation,
   useSubmit,
 } from 'react-router-dom';
-import { authActions } from '../store/auth';
+import { authActions } from '../store/slices/authSlice';
 import ContainerFixed from '../ui/layouts/ContainerFixed';
 
 const Login = () => {

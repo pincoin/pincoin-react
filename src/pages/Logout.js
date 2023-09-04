@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import {MdWarning} from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { Form, useActionData, useNavigate } from 'react-router-dom';
-import { authActions } from '../store/auth';
+import { authActions } from '../store/slices/authSlice';
 import ContainerFixed from '../ui/layouts/ContainerFixed';
 
 const Logout = () => {
