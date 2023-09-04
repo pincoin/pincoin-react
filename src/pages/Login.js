@@ -1,55 +1,43 @@
-import axios from 'axios';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { MdWarning } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
-import {
-  Form,
-  Link,
-  useActionData,
-  useNavigate,
-  useNavigation,
-  useSubmit,
-} from 'react-router-dom';
-import { authActions } from '../store/slices/authSlice';
+import { Link, useNavigate } from 'react-router-dom';
+import { userLogin } from '../store/thunks/authActions';
+import TextButton from '../ui/buttons/TextButton';
 import ContainerFixed from '../ui/layouts/ContainerFixed';
 
 const Login = () => {
   const dispatch = useDispatch();
-  const navigation = useNavigation();
   const navigate = useNavigate();
-  const actionData = useActionData();
-  const submit = useSubmit();
 
   const {
     register,
-    trigger,
+    handleSubmit,
     // 성능 이슈 문제로 formState 반드시 destructuring
-    formState: { errors, isValid },
+    formState: { errors, isSubmitting, isValid },
     clearErrors,
   } = useForm({
     mode: 'onBlur',
   });
 
-  // 폼 전송 중 처리 시 react-hook-form formState.isSubmitting 사용하면 충돌
-  const isSubmitting = navigation.state === 'submitting';
+  // react-router-dom 폼 전송 처리 시 react-hook-form formState.isSubmitting 사용하면 충돌
+  // const isSubmitting = navigation.state === 'submitting';
 
-  useEffect(() => {
-    if (actionData && actionData.accessToken) {
-      dispatch(authActions.login());
-      navigate('/');
-    }
-  }, [actionData]);
+  const formSubmitHandler = async (formData) => {
+    // react-router-dom 폼 action 메소드 사용 시
+    //
+    // 1. handleSubmit 사용하지 않고 event.preventDefault() 호출
+    // event.preventDefault();
+    // 2. 폼 입력이 유효하지 않으면 오류 메시지 출력
+    // if (!isValid) {
+    //   await trigger();
+    // }
+    // 3. react-router-dom action 함수로 폼 전송 요청
+    // submit(event.currentTarget);
 
-  const formSubmitHandler = async (event) => {
-    // react-router-dom 폼과 react-hook-form 폼 호환성 문제로 handleSubmit 사용 안 함
-    event.preventDefault();
-
-    if (!isValid) {
-      await trigger(); // 폼 입력이 유효하지 않으면 오류 메시지 출력
-    }
-
-    submit(event.currentTarget); // react-router-dom action 함수로 폼 전송 요청
+    await dispatch(userLogin(formData)); // await = isSubmitting 표시 처리
+    navigate('/');
   };
 
   return (
@@ -76,9 +64,9 @@ const Login = () => {
           </div>
         </div>
 
-        <Form
+        <form
           method="post"
-          onSubmit={formSubmitHandler}
+          onSubmit={handleSubmit(formSubmitHandler)}
           className="flex-1 flex flex-col gap-y-4"
         >
           <div className="sm:grid sm:grid-cols-6 gap-x-4 items-center">
@@ -136,15 +124,16 @@ const Login = () => {
             )}
           </div>
           <div className="sm:grid sm:grid-cols-6 gap-x-4 items-center">
-            <button
+            <TextButton
               type="submit"
-              disabled={isSubmitting}
+              disabled={!isValid}
+              loading={isSubmitting}
               className="sm:col-start-2 sm:col-span-4 w-full py-2 bg-green-950 text-white rounded"
             >
               {isSubmitting ? '로그인하는 중' : '로그인'}
-            </button>
+            </TextButton>
           </div>
-        </Form>
+        </form>
 
         <div className="relative w-10/12 md:w-1/2 mx-auto">
           <div className="absolute inset-0 flex items-center">
@@ -202,48 +191,6 @@ const Login = () => {
       </div>
     </ContainerFixed>
   );
-};
-
-export const action = async ({ request }) => {
-  const formData = await request.formData();
-
-  let response;
-
-  try {
-    response = await axios.post(
-      `${process.env.API_URL}/auth/authenticate`,
-      {
-        email: formData.get('email'),
-        password: formData.get('password'),
-        grantType: 'password',
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-  } catch (error) {
-    console.log(error);
-    return error;
-  }
-
-  if (response.status === 200) {
-    const expiration = new Date();
-    expiration.setSeconds(expiration.getSeconds() + response.data.expiresIn);
-
-    localStorage.setItem('accessToken', response.data.accessToken);
-    localStorage.setItem('refreshToken', response.data.refreshToken);
-    localStorage.setItem('expiration', expiration.toISOString());
-
-    return {
-      accessToken: response.data.accessToken,
-      refreshToken: response.data.refreshToken,
-      expiration: expiration.toISOString(),
-    };
-  }
-
-  return null;
 };
 
 export default Login;
