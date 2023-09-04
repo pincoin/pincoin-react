@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { MdWarning } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { userLogin } from '../store/thunks/authActions';
+import { login } from '../store/thunks/authActions';
 import TextButton from '../ui/buttons/TextButton';
 import ContainerFixed from '../ui/layouts/ContainerFixed';
 
@@ -36,7 +36,7 @@ const Login = () => {
     // 3. react-router-dom action 함수로 폼 전송 요청
     // submit(event.currentTarget);
 
-    await dispatch(userLogin(formData)); // await = isSubmitting 표시 처리
+    await dispatch(login(formData)); // await = isSubmitting 표시 처리
     navigate('/');
   };
 
