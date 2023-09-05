@@ -1,13 +1,13 @@
 import {createSlice} from '@reduxjs/toolkit';
+import {getAccessToken} from '../../util/auth';
 import {login} from '../thunks/authActions'
 
 // 새로고침해도 로그인 상태 유지를 위해서 JWT 액세스 토큰은 로컬 스토리지에서 가져온다.
-const accessToken = localStorage.getItem('accessToken');
+const accessToken = getAccessToken();
 
 const initialState = {
   isLoading: false,
   isAuthenticated: accessToken != null,
-  accessToken: null,
 };
 
 const authSlice = createSlice({
@@ -34,10 +34,9 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
       state.error = null;
     });
-    builder.addCase(login.fulfilled, (state, action) => {
+    builder.addCase(login.fulfilled, (state) => {
       state.isLoading = false;
       state.isAuthenticated = true;
-      state.accessToken = action.payload.accessToken;
     });
     builder.addCase(login.rejected, (state, action) => {
       state.isLoading = false;
