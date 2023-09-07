@@ -8,6 +8,7 @@ const accessToken = getAccessToken();
 const initialState = {
   isLoading: false,
   isAuthenticated: accessToken != null,
+  error: null,
 };
 
 const authSlice = createSlice({
@@ -29,20 +30,21 @@ const authSlice = createSlice({
     // immer 패키지로 불변성을 확보
 
     // 로그인 처리
-    builder.addCase(login.pending, (state) => {
-      state.isLoading = true;
-      state.isAuthenticated = false;
-      state.error = null;
-    });
-    builder.addCase(login.fulfilled, (state) => {
-      state.isLoading = false;
-      state.isAuthenticated = true;
-    });
-    builder.addCase(login.rejected, (state, action) => {
-      state.isLoading = false;
-      state.isAuthenticated = false;
-      state.error = action.payload;
-    });
+    builder
+      .addCase(login.pending, (state) => {
+        state.isLoading = true;
+        state.isAuthenticated = false;
+        state.error = null;
+      })
+      .addCase(login.fulfilled, (state) => {
+        state.isLoading = false;
+        state.isAuthenticated = true;
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isAuthenticated = false;
+        state.error = action.payload;
+      });
   },
 });
 

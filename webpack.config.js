@@ -50,7 +50,7 @@ module.exports = {
         }),
     ],
     devServer: {
-        port: 3000,
+        port: process.env.PORT,
         hot: true,
         compress: true,
         historyApiFallback: true, // react-router-dom 설정 필수

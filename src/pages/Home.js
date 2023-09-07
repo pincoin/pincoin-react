@@ -1,131 +1,68 @@
 import React from 'react';
 import { MdArrowDownward } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+import { useFetchCategoriesQuery } from '../store/apis/categoriesApi';
 import Card from '../ui/layouts/Card';
 import ContainerFixed from '../ui/layouts/ContainerFixed';
 
-const products = [
-  {
-    id: 1,
-    title: '한게임상품권',
-    slug: '한게임상품권',
-    discount: 3,
-  },
-  {
-    id: 2,
-    title: '구글기프트카드',
-    slug: '구글기프트카드',
-    discount: 6,
-  },
-  {
-    id: 3,
-    title: '아프리카별풍선',
-    slug: '아프리카별풍선',
-    discount: 5,
-  },
-  {
-    id: 4,
-    title: '에그머니',
-    slug: '에그머니',
-    discount: 9.9,
-  },
-  {
-    id: 5,
-    title: '해피머니',
-    slug: '해피머니',
-    discount: 7,
-  },
-  {
-    id: 6,
-    title: '플레이스테이션',
-    slug: '플레이스테이션',
-    discount: 7,
-  },
-  {
-    id: 7,
-    title: '틴캐시',
-    slug: '틴캐시',
-    discount: 7,
-  },
-  {
-    id: 8,
-    title: '컬쳐랜드상품권',
-    slug: '컬쳐랜드상품권',
-    discount: 7,
-  },
-  {
-    id: 9,
-    title: '문화상품권',
-    slug: '문화상품권',
-    discount: 7,
-  },
-  {
-    id: 10,
-    title: '넥슨카드',
-    slug: '넥슨카드',
-    discount: 7,
-  },
-  {
-    id: 11,
-    title: '스마트문화상품권',
-    slug: '스마트문화상품권',
-    discount: 6.5,
-  },
-  {
-    id: 12,
-    title: '도서문화상품권',
-    slug: '도서문화상품권',
-    discount: 6,
-  },
-  {
-    id: 13,
-    title: '퍼니카드',
-    slug: '퍼니카드',
-    discount: 4,
-  },
-  {
-    id: 14,
-    title: '요기요',
-    slug: '요기요',
-    discount: 4,
-  },
-  {
-    id: 15,
-    title: '온캐시',
-    slug: '온캐시',
-    discount: 4,
-  },
-  {
-    id: 16,
-    title: '아이템베이선불쿠폰',
-    slug: '아이템베이선불쿠폰',
-    discount: 3,
-  },
-  {
-    id: 17,
-    title: '매니아선불쿠폰',
-    slug: '매니아선불쿠폰',
-    discount: 3,
-  },
-  {
-    id: 18,
-    title: '와우캐시',
-    slug: '와우캐시',
-    discount: 2.15,
-  },
-  {
-    id: 19,
-    title: 'N코인',
-    slug: 'N코인',
-    discount: 1.01,
-  },
-];
-
 const Home = () => {
+  const { data, error, isLoading } = useFetchCategoriesQuery();
+
+  let categories;
+  let bestsellers;
+
+  if (isLoading) {
+    categories = <div>loading</div>;
+    bestsellers = <div>loading</div>;
+  } else if (error) {
+    categories = <div>서버 연결 오류</div>;
+    bestsellers = <div>서버 연결 오류</div>;
+  } else {
+    categories = data.map((product) => {
+      return (
+        <div className="flex flex-col gap-y-1" key={product.id}>
+          <Link to={`/products/${product.slug}`}>
+            <img
+              src="https://via.placeholder.com/640x480"
+              className="h-auto max-w-full rounded border border-green-950"
+              alt={product.title}
+            />
+          </Link>
+          <div className="text-center">{product.title}</div>
+          <div className="text-center">
+            최대
+            <span className="ml-1 inline-flex items-center text-red-600">
+              {product.discount.toFixed(2)}% <MdArrowDownward />
+            </span>
+          </div>
+        </div>
+      );
+    });
+    bestsellers = data.slice(0, 6).map((product) => {
+      return (
+        <div className="flex flex-col gap-y-1" key={product.id}>
+          <Link to={`/products/${product.slug}`}>
+            <img
+              src="https://via.placeholder.com/640x480"
+              className="h-auto max-w-full rounded border border-green-950"
+              alt={product.title}
+            />
+          </Link>
+          <div className="text-center">{product.title}</div>
+          <div className="text-center">
+            최대
+            <span className="ml-1 inline-flex items-center text-red-600">
+              {product.discount.toFixed(2)}% <MdArrowDownward />
+            </span>
+          </div>
+        </div>
+      );
+    });
+  }
+
   return (
     <>
       <div className="bg-gray-300">이미지 배너</div>
-
       <ContainerFixed className="px-2 py-4">
         <div className="flex flex-col gap-y-4">
           <Card>
@@ -133,26 +70,7 @@ const Home = () => {
               오늘의 상품권
             </h1>
             <div className="grid grid-cols-2 md:grid-cols-6 gap-x-2 md:gap-x-4 gap-y-2 md:gap-y-4">
-              {products.map((product) => {
-                return (
-                  <div className="flex flex-col gap-y-1" key={product.id}>
-                    <Link to={`/products/${product.slug}`}>
-                      <img
-                        src="https://via.placeholder.com/640x480"
-                        className="h-auto max-w-full rounded border border-green-950"
-                        alt={product.title}
-                      />
-                    </Link>
-                    <div className="text-center">{product.title}</div>
-                    <div className="text-center">
-                      최대
-                      <span className="ml-1 inline-flex items-center text-red-600">
-                        {product.discount.toFixed(2)}% <MdArrowDownward />
-                      </span>
-                    </div>
-                  </div>
-                );
-              })}
+              {categories}
             </div>
           </Card>
           <div className="flex flex-col md:flex-row gap-x-4 gap-y-4">
@@ -292,26 +210,7 @@ const Home = () => {
               베스트셀러
             </h1>
             <div className="grid grid-cols-2 md:grid-cols-6 gap-x-2 md:gap-x-4 gap-y-2 md:gap-y-4">
-              {products.slice(0, 6).map((product) => {
-                return (
-                  <div className="flex flex-col gap-y-1" key={product.id}>
-                    <Link to={`/products/${product.slug}`}>
-                      <img
-                        src="https://via.placeholder.com/640x480"
-                        className="h-auto max-w-full rounded border border-green-950"
-                        alt={product.title}
-                      />
-                    </Link>
-                    <div className="text-center">{product.title}</div>
-                    <div className="text-center">
-                      최대
-                      <span className="ml-1 inline-flex items-center text-red-600">
-                        {product.discount.toFixed(2)}% <MdArrowDownward />
-                      </span>
-                    </div>
-                  </div>
-                );
-              })}
+              {bestsellers}
             </div>
           </Card>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-4 bg-neutral-100 rounded p-4">

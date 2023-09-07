@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { usersApi } from './apis/usersApi';
+import { categoriesApi } from './apis/categoriesApi';
 import authReducer from './slices/authSlice';
 import cartReducer from './slices/cartSlice';
 
@@ -8,12 +8,17 @@ const store = configureStore({
   reducer: {
     auth: authReducer,
     cart: cartReducer,
-    [usersApi.reducerPath]: usersApi.reducer,
+    [categoriesApi.reducerPath]: categoriesApi.reducer,
   },
   middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat(usersApi.middleware);
+    return getDefaultMiddleware().concat(categoriesApi.middleware);
   },
 });
+
+if (process.env.NODE_ENV === 'development') {
+  // 개발 디버깅 시 콘솔에서 store.getState() 접근 가능
+  window.store = store;
+}
 
 setupListeners(store.dispatch);
 
