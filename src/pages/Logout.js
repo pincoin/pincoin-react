@@ -40,6 +40,7 @@ const Logout = () => {
           <div className="sm:grid sm:grid-cols-6 gap-x-4 items-center">
             <TextButton
               className="sm:col-start-2 sm:col-span-4 w-full py-2 bg-red-950 text-white rounded"
+              type="button"
               onClick={logoutHandler}
             >
               로그아웃

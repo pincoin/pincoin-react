@@ -1,13 +1,14 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {getAccessToken} from '../../util/auth';
 import {login} from '../thunks/authActions'
 
-// 새로고침해도 로그인 상태 유지를 위해서 JWT 액세스 토큰은 로컬 스토리지에서 가져온다.
-const accessToken = getAccessToken();
+// 새로고침해도 로그인 상태 유지 = JWT 액세스 토큰 로컬스토리지 저장 = XSS 공격에 취약
+// const accessToken = getAccessToken();
 
 const initialState = {
   isLoading: false,
-  isAuthenticated: accessToken != null,
+  accessToken: null,
+  expiration: null,
+  isAuthenticated: false,
   error: null,
 };
 
@@ -17,11 +18,9 @@ const authSlice = createSlice({
   reducers: {
     // 메소드 이름이 dispatch() 할 때 액션 이름 역할
     logout(state) {
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
-      localStorage.removeItem('expiration');
-
       state.isLoading = true;
+      state.accessToken = null;
+      state.expiration = null;
       state.isAuthenticated = false;
       state.error = null;
     },
@@ -33,15 +32,27 @@ const authSlice = createSlice({
     builder
       .addCase(login.pending, (state) => {
         state.isLoading = true;
+        state.accessToken = null;
+        state.expiration = null;
         state.isAuthenticated = false;
         state.error = null;
       })
-      .addCase(login.fulfilled, (state) => {
+      .addCase(login.fulfilled, (state, action) => {
         state.isLoading = false;
+
+        const expiration = new Date();
+        expiration.setSeconds(
+          expiration.getSeconds() + action.payload.expiresIn
+        );
+
+        state.accessToken = action.payload.accessToken;
+        state.expiration = expiration.toISOString();
         state.isAuthenticated = true;
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
+        state.accessToken = null;
+        state.expiration = null;
         state.isAuthenticated = false;
         state.error = action.payload;
       });

@@ -101,6 +101,7 @@ const Login = () => {
             <div className="sm:col-span-4 flex mt-2 sm:mt-0 rounded shadow ring-1 ring-inset ring-gray-400 focus-within:ring-1 focus-within:ring-inset focus-within:ring-teal-600">
               <input
                 type="password"
+                autoComplete="off"
                 placeholder="****"
                 {...register('password', {
                   required: '비밀번호를 입력해주세요.',

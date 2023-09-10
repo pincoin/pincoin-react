@@ -1,32 +1,27 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { authActions } from '../store/slices/authSlice';
-import { getAccessToken, getTokenDuration } from '../util/auth';
+import { getTokenDuration } from '../util/auth';
 
 const RootLayout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const accessToken = getAccessToken();
+  const { accessToken, expiration } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (!accessToken) {
       return;
     }
 
-    if (accessToken === 'EXPIRED') {
-      // 이미 만료된 토큰 로그아웃 처리
-      dispatch(authActions.logout());
-      navigate('/');
-    }
-
-    const tokenDuration = getTokenDuration();
+    const tokenDuration = getTokenDuration(expiration);
     console.log(tokenDuration);
 
     setTimeout(() => {
       // 토큰 만료시간 경과 시 로그아웃 처리
+      console.log(tokenDuration);
       dispatch(authActions.logout());
       navigate('/');
     }, tokenDuration);
